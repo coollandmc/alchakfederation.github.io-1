@@ -5,7 +5,7 @@ const fs = require("fs");
 const playwright = require("playwright");
 
 const MAP_URL = "https://map.ccnetmc.com/nationsmap";
-const OUTFILE = "towns.json";
+const OUTFILE = "../towns.json";
 
 function parseNum(s) {
   if (!s) return null;
