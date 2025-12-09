@@ -76,7 +76,7 @@ patEl.value = localStorage.getItem('gh_pat') || '';
 
 async function loadJSON(){
   try {
-    const r = await fetch('.github/workflows/towns.json?cb=' + Date.now());
+    const r = await fetch('/.github/workflows/towns.json?cb=' + Date.now());
     if (!r.ok) throw new Error('towns.json not found');
     data = await r.json();
   } catch(e) {
