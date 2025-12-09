@@ -4,7 +4,7 @@ name: Regenerate Towns JSON
 on:
   workflow_dispatch:
   schedule:
-    - cron: "*/30 * * * *" # Every 6 hours
+    - cron: "0 */12 * * *" # Every 6 hours
 
 jobs:
   build:
