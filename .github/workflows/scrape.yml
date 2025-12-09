@@ -1,36 +1,34 @@
-name: Scrape CCNet
+name: Scrape nations map
 
 on:
   workflow_dispatch:
   schedule:
-    - cron: "0 12 * * *" # every hour (change if you want)
+    - cron: '0/30 * * * *' # every 6 hours
 
 jobs:
   scrape:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: 20
 
-      - name: Install Node dependencies
+      - name: Install deps
         run: npm ci || npm install
 
-      - name: Install Playwright
+      - name: Install Playwright browsers
         run: npx playwright install --with-deps
 
       - name: Run scraper
-        run: node scrape_map.js
+        run: node scraper.js
 
       - name: Commit results
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add towns.json
-          git commit -m "Update towns.json" || echo "No changes"
+          git commit -m "Update towns.json (automated)" || echo "No changes"
           git push

@@ -1,0 +1,35 @@
+
+name: Regenerate Towns JSON
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/30 * * * *" # Every 6 hours
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+
+    - name: Install Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: "20"
+
+    - name: Install Playwright
+      run: |
+        npm install playwright
+        npx playwright install
+
+    - name: Run scraper
+      run: node scraper.js
+
+    - name: Commit changes
+      run: |
+        git config user.name "GitHub Actions"
+        git config user.email "actions@github.com"
+        git add towns.json
+        git commit -m "Update towns.json" || echo "No changes"
+        git push

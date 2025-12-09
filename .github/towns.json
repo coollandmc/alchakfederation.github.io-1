@@ -1,0 +1,8 @@
+{
+  "scraped_at": "2025-12-09T00:00:00Z",
+  "source": "https://map.ccnetmc.com/nationsmap",
+  "towns": [
+    { "town": "SampleTown1", "nation": "NationA", "bank": 1200, "upkeep": 300, "days_rounded": 4, "lat": 10, "lng": -20 },
+    { "town": "SampleTown2", "nation": "NationB", "bank": 50, "upkeep": 10, "days_rounded": 5, "lat": 12, "lng": -22 }
+  ]
+}
